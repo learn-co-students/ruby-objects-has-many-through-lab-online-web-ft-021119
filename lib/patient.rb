@@ -15,7 +15,7 @@ attr_accessor :name, :date, :patient, :doctor
   end
 
   def new_appointment(doctor, date)
-    Appointment.new(self, doctor, date)
+    Appointment.new(self, date, doctor)
   end
 
   def appointments
@@ -26,6 +26,7 @@ attr_accessor :name, :date, :patient, :doctor
 
   def doctors
     self.appointments.map do |appointment|
+      # binding.pry
       appointment.doctor
     end
   end
