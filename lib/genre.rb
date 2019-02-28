@@ -8,16 +8,24 @@ class Genre
     @@all << self
   end
 
+  def self.all
+    @@all
+  end
+
+
   def songs
-    all = []
-    binding.pry
-    Song.all.each do |songs|
-      binding.pry
-      if songs.genre == self
-        binding.pry
-        all << songs
+    all_songs = []
+    Song.all.each do |song|
+      if song.genre == self
+        all_songs << song
       end
     end
-    all
+    all_songs
+  end
+
+  def artists
+    all_artists = []
+    self.songs.each {|song| all_artists << song.artist}
+    all_artists
   end
 end

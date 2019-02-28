@@ -15,19 +15,34 @@ class Artist
   end
 
   def new_song(name, genre)
-    song = Song.new(name, genre, self)
-    song.artist = self
-
+    Song.new(name, self, genre)
   end
 
   def songs
-    Songs.all.collect do |song|
+    all_songs = []
+    Song.all.each do |song|
       if song.artist == self
-        song
+        all_songs << song
       end
     end
+    all_songs
   end
 
-  
+  def genres
+    all_genres = []
+    self.songs.each {|song| all_genres << song.genre}
+    all_genres
+  end
+  #
+  # def genres
+  #   all_genres = []
+  #   self.songs.each do |song|
+  #     if song.artist == self
+  #       all genres << song.genre
+  #     end
+  #   end
+  #   all_genres
+  # end
+
 
 end
