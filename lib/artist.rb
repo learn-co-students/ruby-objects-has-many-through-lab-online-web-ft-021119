@@ -1,3 +1,4 @@
+require 'pry'
 class Artist
   attr_accessor :name, :artist, :genre
   @@all = []
@@ -22,7 +23,7 @@ class Artist
   end
 
   def genres
-    @@all.collect do |song|
+    songs.collect do |song|
       song.genre
     end
   end
