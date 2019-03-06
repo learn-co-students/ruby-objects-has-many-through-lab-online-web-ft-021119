@@ -1,6 +1,7 @@
 require 'pry'
 # Songs belong to an artist and belong to a genre.
 class Song
+  attr_accessor :artist
   @@all = []
   def initialize(name, artist, genre)
     @name = name

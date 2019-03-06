@@ -6,6 +6,7 @@ class Genre
     @name = name
     @@all << self
     @songs = []
+    @artists = []
   end
 
   def self.all
@@ -17,6 +18,17 @@ class Genre
   end
 
   def songs
+    Song.all.collect do |song|
+      @songs << song
+    end
     @songs
+  end
+
+  def artists
+    Song.all.collect do |song|
+      # binding.pry
+      @artists << song.artist
+    end
+    @artists
   end
 end
