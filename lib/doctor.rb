@@ -1,10 +1,11 @@
 require 'pry'
 class Doctor
-  attr_accessor :appointments
+  attr_accessor :appointments, :patients
   @@all = []
   def initialize(name)
     @name = name
     @@all << self
+    @patients = []
   end
 
   def self.all
@@ -16,14 +17,20 @@ class Doctor
   end
 
   def appointments
-    @appointments
+    Appointment.all.select{|appt| appt.doctor == self}
   end
 
   def new_appointment(patient, date)
-    # binding.pry
-     new_appt = Appointment.new(date, patient, self)
-     self.appointments << new_appt
-    # binding.pry
+    Appointment.new(date, patient, self)
+  end
+
+  def patients
+    Appointment.all.select do |appt|
+      if appt.doctor == self
+        @patients << appt.patient
+      end
+    end
+    @patients
   end
 
 
